@@ -1,0 +1,188 @@
+{% extends 'base-with-all.html.twig' %}
+{% set currentPage = 'Mon profil' %}
+{% set currentSection = app.user.firstname|capitalize ~ ' ' ~ app.user.name|capitalize  %}
+
+
+
+{% block title %}Mon profil{% endblock %}
+
+
+
+{% block content %}
+
+<div class="col-lg-4">
+    <div class="card mg-b-20">
+        <div class="card-body">
+            <div class="pl-0">
+                <div class="main-profile-overview">
+                    <div class="d-flex justify-content-between mg-b-20">
+                        <div>
+                            <h5 class="main-profile-name">{{ app.user.firstname|capitalize }} {{ app.user.name|capitalize }}</h5>
+                        </div>
+                    </div>
+                    <hr class="mg-y-30">
+                    <label class="main-content-label tx-13 mg-b-20">Informations</label>
+                    <div class="main-profile-social-list">
+
+                        <div class="media">
+                            <div class="media-icon bg-info-transparent text-info">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="media-body">
+                                <span>Email</span> <a href="mailto:{{ app.user.email }}">{{ app.user.email }}</a>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-icon bg-warning-transparent text-warning">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <div class="media-body">
+                                <span>Date de création de compte</span> {{ app.user.creationDate|date('d/m/Y à H:m:i') }}
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-icon bg-danger-transparent text-danger">
+                                <i class="fa fa-hourglass-start"></i>
+                            </div>
+                            <div class="media-body">
+                                <span>Dernière connexion</span> {% if app.user.lastLogin is not null %}{{ app.user.lastLogin|date('d/m/Y à H:m:i') }}{% else %}Jamais connecté{% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- main-profile-overview -->
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="tabs-menu ">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs profile navtab-custom panel-tabs">
+                   <li>
+                        <a class="tab-elem" href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">Editer le profil</span> </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
+                <div class="tab-pane" id="home">
+                    <h4 class="tx-15 text-uppercase mb-3">{{ app.user.firstname|capitalize }} {{ app.user.name|capitalize }}</h4>
+                    <hr>
+
+                   </div>
+                <div class="tab-pane" id="project">
+                    <h4 class="tx-15 text-uppercase mb-3">{{ app.user.firstname|capitalize }} {{ app.user.name|capitalize }}</h4>
+
+                    <hr>
+                </div>
+                <div class="tab-pane" id="demand">
+                    <h4 class="tx-15 text-uppercase mb-3">{{ app.user.firstname|capitalize }} {{ app.user.name|capitalize }}</h4>
+                    <hr>
+                </div>
+
+                <div class="tab-pane" id="settings">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        {% if not form.email.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.email) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="FullName">Nom</label>
+                        {% if not form.name.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.name) }}
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="FullName">Prénom</label>
+                        {% if not form.firstname.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.firstname) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="Address">Adresse</label>
+                        {% if not form.address.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.address) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="ZipCode">Code Postal</label>
+                        {% if not form.zipcode.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.zipcode) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.zipcode, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="Address">Ville</label>
+                        {% if not form.city.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.city) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <h5 for="Password">Modification de votre mot de passe</h5>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Mot de passe</label>
+                        {% if not form.plainPassword.first.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.plainPassword.first) }}
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="RePassword">Confirmer le mot de passe</label>
+                        {% if not form.plainPassword.second.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(form.plainPassword.second) }}
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    {{ form_widget(form.save,  {'label' : "Sauvegarder", 'attr':  {'class': 'btn btn-primary waves-effect waves-light w-md'}}) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

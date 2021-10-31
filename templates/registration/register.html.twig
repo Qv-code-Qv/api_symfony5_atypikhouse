@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Incription{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html.twig' %}
+
+<html>
+    <head>
+        <title>Incription</title>
+    </head>
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <div class="logo">
+                        <img class="logo-login" src="images/Logo atypikhouse.png" alt="Atypik house hébergement insolite">
+                    </div>
+                    <h3>S'inscrire</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{ form_start(registrationForm) }}
+                    {{ form_errors(registrationForm) }}
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user">Nom</i></span>
+                            </div>
+                            {% if not registrationForm.lastname.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.lastname) }}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user">Prénom</i></span>
+                            </div>
+                            {% if not registrationForm.firstname.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.firstname) }}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope">Email</i></span>
+                            </div>
+                            {% if not registrationForm.email.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.email) }}
+                                </div>
+                            {% endif %}
+
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key">Mot de passe</i></span>
+                            </div>
+                            {% if not registrationForm.plainPassword.first.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.plainPassword.first) }}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key">Confirmer mot de passe</i></span>
+                            </div>
+                            {% if not registrationForm.plainPassword.second.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.plainPassword.second) }}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+
+                        </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-home">Numero de telephone</i></span>
+                        </div>
+                        {% if not registrationForm.phone.vars.valid %}
+                            <div class="alert alert-danger">
+                                <span class="badge badge-danger"> Erreur</span>
+                                {{ form_errors(registrationForm.phone) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(registrationForm.phone, {'attr': {'class': 'form-control'}}) }}
+
+                    </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-home">Adress</i></span>
+                            </div>
+                            {% if not registrationForm.address.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.address) }}
+                                </div>
+                            {% endif %}
+
+                            {{ form_widget(registrationForm.address, {'attr': {'class': 'form-control'}}) }}
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-address-card">Code Postal</i></span>
+                            </div>
+                            {% if not registrationForm.zipcode.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.zipcode) }}
+                                </div>
+                            {% endif %}
+
+                            {{ form_widget(registrationForm.zipcode, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city">Ville</i></span>
+                            </div>
+                            {% if not registrationForm.city.vars.valid %}
+                                <div class="alert alert-danger">
+                                    <span class="badge badge-danger"> Erreur</span>
+                                    {{ form_errors(registrationForm.city) }}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(registrationForm.city, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Se souvenir de moi
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    {{ form_widget(registrationForm.save,  {'label' : "Sauvegarder", 'attr':  {'class': 'btn btn-primary waves-effect waves-light w-md'}}) }}
+                    {{ form_end(registrationForm) }}
+
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Vous avez déjà un compte ?<a href="#">Se connecter</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
+    {% include 'partials/footer.html.twig' %}
+    <footer class="tm-bg-dark-blue">
+        <div class="container">
+            <div class="row">
+                <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
+                    Copyright &copy; <span class="tm-current-year">2021</span> With &#9825; By OIQA Agency</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+

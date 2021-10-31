@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="w3-top w3-bar w3-white w3-wide w3-padding w3-card" style="margin-left:-15px">
+        <a href="{{ path('homepage') }}" class="w3-bar-item w3-button"><b>ATYPIK</b>House</a>
+
+        <!-- Float links to the right. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a href="{{ path('activities') }}" class="w3-bar-item w3-button">Activités</a>
+            <a href="{{ path('new_hosting') }}" class="w3-bar-item w3-button">Devenez hôte</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button"><i class='far fa-user-circle'></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="{{ path('api_login') }}" class="w3-bar-item w3-button">Connexion</a>
+                    <a href="{{ path('app_register') }}" class="w3-bar-item w3-button">Inscription</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

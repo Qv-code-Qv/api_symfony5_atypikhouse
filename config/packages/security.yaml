@@ -1,0 +1,76 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+        ROLE_ADMIN: ROLE_ADMIN
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern: ^/api/login
+            stateless: true
+            anonymous: true
+            user_checker: App\Security\UserChecker
+            provider: app_user_provider
+            json_login:
+                check_path: api_login
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        refresh:
+            pattern: ^/api/token/refresh
+            stateless: true
+            anonymous: true
+        api:
+            pattern: ^/api
+            provider: app_user_provider
+            stateless: true
+            anonymous: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        admin:
+            pattern: ^/se_admin
+            anonymous: lazy
+            guard:
+                authenticators:
+                    - App\Security\AuthAuthenticator
+
+                    #main:
+            #anonymous: true
+            #lazy: true
+            #provider: users
+            #guard:
+                #authenticators:
+                    #- App\Security\AuthAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/se_admin/auth/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/se_admin/auth/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # Plus on a une requête précise, plus elle est "haute" dans l'ordre de protection d'accès
+        - { path: ^/api/houses, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
+        - { path: ^/api/, roles: ROLE_USER }
+        - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }

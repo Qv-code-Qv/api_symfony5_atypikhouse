@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Incription{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html.twig' %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Incription</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <!--Fontawesome CDN-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="register.css">
+        <link rel="stylesheet" type="text/css" href="footer.css"/>
+    </head>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <div class="logo">
+                        <img class="logo-login" src="images/Logo atypikhouse.png" alt="Atypik house hébergement insolite">
+                    </div>
+                    <h3>S'inscrire</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="post" >
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nom" autocomplete="name" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Prénom" autocomplete="firstname" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control" placeholder="Nomprenom@domaine.com" autocomplete="email" required autofocus>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Resaississez votre mot de passe">
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-home"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Adresse" autocomplete="address" required autofocus>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-address-card"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="Code postal" autocomplete="zipcode" required autofocus>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Ville" autocomplete="city" required autofocus >
+                        </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Se souvenir de moi
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Connexion" class="btn float-right login_btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Vous avez déjà un compte ?<a href="#">Se connecter</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
+    {% include 'partials/footer.html.twig' %}
+    <footer class="tm-bg-dark-blue">
+        <div class="container">
+            <div class="row">
+                <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
+                    Copyright &copy; <span class="tm-current-year">2021</span> With &#9825; By OIQA Agency</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+

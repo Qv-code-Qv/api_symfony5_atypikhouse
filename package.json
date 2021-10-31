@@ -1,0 +1,34 @@
+{
+    "devDependencies": {
+        "@symfony/stimulus-bridge": "^2.0.0",
+        "@symfony/webpack-encore": "^1.4.0",
+        "bootstrap": "^5.0.1",
+        "core-js": "^3.0.0",
+        "jquery": "^3.6.0",
+        "popper.js": "^1.16.1",
+        "regenerator-runtime": "^0.13.2",
+        "sass": "^1.34.1",
+        "sass-loader": "11.0.0",
+        "stimulus": "^2.0.0",
+        "ts-loader": "8.0.1",
+        "typescript": "^4.3.2",
+        "webpack-notifier": "^1.13.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@axentix/plugin-range": "^1.0.0",
+        "@popperjs/core": "^2.9.2",
+        "axentix": "^1.3.0",
+        "vue": "^2.6.14",
+        "vue-dock-menu": "^1.0.3",
+        "vue-loader": "^15.9.7",
+        "vue-template-compiler": "^2.6.14"
+    }
+}

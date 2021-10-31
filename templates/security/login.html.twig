@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html.twig' %}
+
+<html>
+<head>
+    <title>S'identifier</title>
+    <!--Made with love by Mutiullah Samim -->
+
+
+</head>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo">
+                    <img class="logo-login" src="images/Logo atypikhouse.png" alt="Atypik house hébergement insolite">
+                </div>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                <h3>S'identifier</h3>
+            <div class="card-body">
+                <form method="post">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Identifiant" autocomplete="email" required autofocus>
+
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}">
+                    </div>
+                    <div class="row align-items-center remember">
+                        <input type="checkbox">Se souvenir de moi
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Connexion" class="btn float-right login_btn">
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'partials/footer.html.twig' %}
+
+<footer class="tm-bg-dark-blue">
+    <div class="container">
+        <div class="row">
+            <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
+                Copyright &copy; <span class="tm-current-year">2021</span> With &#9825; By OIQA Agency</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
